@@ -1,7 +1,8 @@
 from datetime import date
 
 today = date.today()
-ticker = "AAPL"
+watchlist = ["AAPL", "NVDA", "MSFT", "AMD", "TSLA"]
 
-print(f"Running scan for {ticker} on {today}")
-print(f"Script is working. Let's build something.")
+for ticker in watchlist:
+    print(f"Running scan for {ticker} on {today}")
+
