@@ -42,3 +42,4 @@ print(f"    City: {city}")
 print(f"    Country: {country}")
 print(f"    Moon Illumination: {moon_illumination}")
 print(f"    Moon Phase: {moon_phase}")
+
