@@ -6,6 +6,12 @@ import random
 import time
 
 # Updated May 9 2026, from day1_v6_multipleurls.py
+
+#################################################################################
+### NOTE: Recommended to change 'TOPIC' and 'User-Agent' variables before use ###
+#################################################################################
+
+
 TOPIC = "add topic here"
 
 start = time.time()
@@ -55,6 +61,9 @@ all_data = []
 # main program
 for url in urls:
     
+    if not url.endswith(".json"):           
+        url = url.rstrip("/") + "/.json"
+
     res = requests.get(url, headers=headers)
 
     print(res.status_code)

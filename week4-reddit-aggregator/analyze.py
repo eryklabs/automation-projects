@@ -7,6 +7,10 @@ from datetime import date
 # v8: removing link for each comment, makes readability a lot harder
 # adding indentation code for better readability, on the report
 
+###############################################################
+### NOTE: Recommended to change 'TOPIC' variable before use ###
+###############################################################
+
 TOPIC = "add topic here"
 
 all_content = []            # list with raw json content (comments)
@@ -108,7 +112,7 @@ start = time.time()
 prompt = f"""I posted the same question across multiple subreddits. Analyze ALL the responses and give me:
 
 1. CONSENSUS: What do most people agree on?
-2. TOP RECOMMENDATIONS: What specific products/brands were recommended most, and by how many people?
+2. TOP RECOMMENDATIONS: What specific products/brands/solutions were recommended most, and by how many people?
 3. CONTRARIAN INSIGHTS: Any downvoted or low-score comments that actually make good points?
 4. WARNINGS: What should I avoid and why?
 5. ACTION ITEMS: Based on everything, what should I actually do?
