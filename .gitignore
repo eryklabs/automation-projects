@@ -210,3 +210,5 @@ __marimo__/
 # User Added
 report_*.txt
 scan_*.csv
+urls.txt
+data/
