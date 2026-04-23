@@ -212,3 +212,9 @@ report_*.txt
 scan_*.csv
 urls.txt
 data/
+.env
+*.db
+*.json
+*.csv
+__pycache__/
+.venv/
