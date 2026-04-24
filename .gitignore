@@ -218,3 +218,4 @@ data/
 *.csv
 __pycache__/
 .venv/
+*.db-journal
