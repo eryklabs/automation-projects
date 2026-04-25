@@ -219,3 +219,8 @@ data/
 __pycache__/
 .venv/
 *.db-journal
+notes.md
+*.sqbpro
+*.sqlite
+*.sqlite3
+*.pyc
