@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 
 # 2026-04-24 v2: adding error handling for HTTP errors and counter at the end that prints a summary
 # 2026-04-25 v3: improving counter at end formatting, using divmod(); 
-#                add logging of failed tickers to database. Because otherwise script will keep trying them each run and waste API calls
+# 2026-04-25 v4: add logging of failed tickers to database. Because otherwise script will keep trying them each run and waste API calls
 
 load_dotenv()
 
@@ -31,9 +31,14 @@ start = time.time()   # for timing how long this script takes
 
 
 
+# SELECT query for SQLite, that from `symbols` table: 
+#   runs only for `ticker` that hasn't been put into `float_snapshots` yet;  
+#   skips a `ticker` if it's `scan_status` is NOT `no_data` (`no_data` = there was a failure. So don't waste API calls on that ticker for future runs)
+#   limits to 249 API calls per run
 cur.execute("""
     SELECT ticker FROM symbols
     WHERE ticker NOT IN (SELECT DISTINCT symbol FROM float_snapshots)
+            AND scan_status != 'no_data'
     LIMIT 249
     """) 
 
@@ -74,6 +79,10 @@ for i, ticker in enumerate(tickers):
         print(f"{i+1}/{len(tickers)} - {symbol} SKIPPED (no data)")
         tickers_failed.append(symbol)   # add symbol to the `tickers_failed` tuple for end summary
         counter_failed += 1             # increment `counter_failed` by 1
+        cur.execute(                    # when a ticker fails, update its status in `symbols` table of SQLite DB
+            "UPDATE symbols SET scan_status = 'no_data' WHERE ticker = ?",
+            (symbol,)
+        )
         time.sleep(2)                   # avoid rate limiting
         continue
 
@@ -116,12 +125,12 @@ else:
 print(f"\n\n{'='*50}")
 print("RUN SUMMARY")
 print(f"{'='*50}")
-print(f"\nFloat Scanner completed 249 queries in {runtime} seconds.\n")
+print(f"\nFloat Scanner completed {len(tickers)} queries in {runtime} seconds.\n")
 print(f"Tickers added to database: {counter_succeeded}\n")
 print(f"Tickers skipped due to failure: {counter_failed}\n")
-print("    Tickers failed:")
+print("    - Tickers failed:")
 for ticker in tickers_failed:
-    print(f"        {ticker}")
+    print(f"        - {ticker}")
 print(f"\n")
 
 # print queries per minute, which will help optimize sleep timers later 
