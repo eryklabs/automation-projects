@@ -224,3 +224,7 @@ notes.md
 *.sqlite
 *.sqlite3
 *.pyc
+*.mp3
+*_transcript.txt
+*_analysis.txt
+*_chunks.txt
