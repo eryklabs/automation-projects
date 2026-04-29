@@ -3,6 +3,7 @@ import time
 import requests
 import sqlite3
 from dotenv import load_dotenv 
+from datetime import datetime
 
 ### WORKFLOW ###
 # 1. read tickers from `symbols` table
@@ -29,6 +30,11 @@ cur = con.cursor()
 
 start = time.time()   # for timing how long this script takes
 
+# Print date and time of scan start (so log is easier to read, when troubleshooting or reading summaries)
+start_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+print(f"\n{'='*50}")
+print(f"FLOAT SCANNER - Run started: {start_str}")
+print(f"{'='*50}\n")
 
 
 # SELECT query for SQLite, that from `symbols` table: 
@@ -125,7 +131,9 @@ else:
 print(f"\n\n{'='*50}")
 print("RUN SUMMARY")
 print(f"{'='*50}")
-print(f"\nFloat Scanner completed {len(tickers)} queries in {runtime} seconds.\n")
+print(f"\nRun started: {start_str}")
+print(f"\nRun finished: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+print(f"\nFloat Scanner completed {len(tickers)} queries in {runtime}.\n")
 print(f"Tickers added to database: {counter_succeeded}\n")
 print(f"Tickers skipped due to failure: {counter_failed}\n")
 print("    - Tickers failed:")
