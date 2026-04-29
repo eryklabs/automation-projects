@@ -220,6 +220,10 @@ __marimo__/
 Thumbs.db
 
 
+# Virtual environments
+.venv/
+venv/
+whisper-env/
 
 # User Added
 report_*.txt
