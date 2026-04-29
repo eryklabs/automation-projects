@@ -207,6 +207,20 @@ marimo/_lsp/
 __marimo__/
 
 
+
+# Transcripts (these can contain personal info)
+*_transcript.txt
+ 
+# IDE
+.vscode/
+.idea/
+ 
+# OS
+.DS_Store
+Thumbs.db
+
+
+
 # User Added
 report_*.txt
 scan_*.csv
@@ -228,3 +242,7 @@ notes.md
 *_transcript.txt
 *_analysis.txt
 *_chunks.txt
+*.m4a
+*.wav
+*.mp4
+
