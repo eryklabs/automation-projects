@@ -219,6 +219,9 @@ __marimo__/
 .DS_Store
 Thumbs.db
 
+# Streamlit
+.streamlit/
+
 
 # Virtual environments
 .venv/
@@ -250,5 +253,6 @@ notes.md
 *.wav
 *.mp4
 *.docx
+test.json
 *.tmp
 
