@@ -41,6 +41,14 @@ if df.empty:
 
 
 # ------------------------------------------------------------------------
+# Read the URL paramater and pre-select the project filter
+# ------------------------------------------------------------------------
+url_project = st.query_params.get("project")
+default_projects = [url_project] if url_project else []
+
+
+
+# ------------------------------------------------------------------------
 # Sidebar - Filters and Sorting
 # ------------------------------------------------------------------------
 with st.sidebar:
@@ -85,6 +93,13 @@ with st.sidebar:
     # Look up the field name that matches the chosen label
     sort_field = next(field for label, field in SORT_OPTIONS if label == sort_label)
 
+    selected_projects = st.multiselect(
+        "Project", 
+        options=available_projects,
+        default=default_projects,
+        help="Leave empty to show all projects",
+    )
+
 
 
 # ------------------------------------------------------------------------
@@ -111,7 +126,7 @@ if search_query:
 # Apply Sort
 # Note: 'created_at_asc' is a special "ascending" variant of `created_at`
 if sort_field == "created_at_asc":
-    filtered == filtered.sort_values("created_at", ascending=True)
+    filtered = filtered.sort_values("created_at", ascending=True)
 elif sort_field == "title":
     filtered = filtered.sort_values("title", ascending=True)
 else:

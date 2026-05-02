@@ -69,10 +69,10 @@ col3.metric("Threads", item["total_threads"])
 col4.metric("Comments", item["total_comments"])
 col5.metric("Upvotes", item["total_upvotes"])
 
-# Project tage if present
+# Project tags if present
 if pd.notna(item.get("project")):
-    st.caption(f"🔧 Project: **{item['project']}**")
-
+    project_url = f"/?project={item['project']}"      # unclickable link code:  st.caption(f"🔧 Project: **{item['project']}**")
+    st.markdown(f"🔧 Project: [**{item['project']}**]({project_url})")
 
 
 # -----------------------------------------------------------------------------
