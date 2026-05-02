@@ -144,12 +144,10 @@ else:
             # Each row gets a container with the title as a clickable link
             # and metadata below
             with st.container(border=True):
-                # Title as a link to the detail page
-                # st.page_link navigates to anothe rpage, passing query params
-                st.page_link(
-                    page=f"pages/1_Detail.py",
-                    label=f"**{row['title']}**"
-                )
+                # Build the detail page URL with the research ID as a query parameter
+                detail_url = f"/Detail?id={row['id']}"
+                st.markdown(f"### [{row['title']}]({detail_url})")
+                
 
                 # Metadata row using columns for layout
                 col1, col2, col3, col4 = st.columns(4)
