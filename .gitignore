@@ -252,3 +252,12 @@ notes.md
 *.docx
 *.tmp
 
+# Week 8 transcript screener prompt outputs / drafts
+week8-transcript-screener/prompts/archive/
+week8-transcript-screener/prompts/*
+
+# Keep only these 3 prompt files tracked
+!week8-transcript-screener/prompts/stage1_extraction_v2.md
+!week8-transcript-screener/prompts/stage2a_canslim_v1.md
+!week8-transcript-screener/prompts/stage2b_superstocks_v3.md
+
