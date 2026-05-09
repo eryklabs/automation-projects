@@ -252,6 +252,9 @@ notes.md
 *.docx
 *.tmp
 
+# Week 4 Reddit Research Aggregator
+week4-reddit-aggregator/templates/*
+
 # Week 8 transcript screener prompt outputs / drafts
 week8-transcript-screener/prompts/archive/
 week8-transcript-screener/prompts/*
