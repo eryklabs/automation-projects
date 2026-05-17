@@ -251,6 +251,8 @@ notes.md
 *.mp4
 *.docx
 *.tmp
+test/ 
+week4-reddit-aggregator/investing-sector-rotations/
 
 # Week 4 Reddit Research Aggregator
 week4-reddit-aggregator/templates/*
