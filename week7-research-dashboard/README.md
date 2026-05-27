@@ -61,9 +61,9 @@ MVP. Single-source (Reddit) today, designed to extend. Used personally for ~9 ca
 
 ## Why this exists
 
-I post research questions across multiple subreddits, scrape the comments, and run them through a local LLM for analysis. Output is a folder of markdown and JSON files. Without a UI, finding past research means digging through folders by date and slug. This dashboard solves that.
+I post research questions across multiple subreddits, scrape the comments, and run them through a local LLM (or an AI model such as Claude) for analysis. Output is a folder of markdown and JSON files. Without a UI, finding past research means digging through folders by date and slug. This dashboard solves that.
 
-The design intent is also to extend beyond Reddit later - same dashboard pattern, additional sources (YouTube transcripts, voice notes, etc.). Hence the generic name `research-dashboard` rather than `reddit-dashboard`.
+The design intent is also to extend beyond Reddit later - same dashboard pattern, additional sources (other specialized online forums, YouTube transcripts, etc.). Hence the generic name `research-dashboard` rather than `reddit-dashboard`.
 
 ## What it does today
 
