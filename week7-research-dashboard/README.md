@@ -1,8 +1,21 @@
 # Research Dashboard
 
-A personal Streamlit dashboard for browsing Reddit research output. Reads markdown reports and JSON scan data produced by a separate Reddit aggregator project, surfaces them in a filterable, sortable list, and shows a detailed view per research item.
+# Research Dashboard
 
-**Status:** Week 7 project — MVP shipped. Single-source (Reddit) for now, designed to extend.
+I post research questions across multiple subreddits - things like "best UPS for a NAS" or "advice for shipping product X internationally" - then scrape the answers and run them through a local LLM to synthesize what people actually agreed on, what got buried but mattered, and what to actually do. Over time this produced a folder of markdown reports and JSON files that became impossible to navigate. I built this dashboard to solve that.
+
+It's the **read layer** of a two-part personal data pipeline. A separate aggregator project handles ingestion (scraping, LLM analysis, file output). This project handles surfacing: a multi-page Streamlit app reads the file outputs, joins metadata from a per-research `meta.json`, and exposes everything through filterable lists, sortable columns, and per-item detail views.
+
+
+**What this project demonstrates:**
+
+- **Multi-stage data pipeline design.** Ingestion and presentation are decoupled - they share a documented JSON schema (`meta.json`) but neither knows about the other's internals. The dashboard could swap to a different aggregator (Other specialized forums, YouTube transcripts) without code changes, only schema mapping.
+- **Pandas as the data boundary.** A single `data.py` module reads files from disk and returns a DataFrame. The Streamlit pages never touch the filesystem. If I switched to SQLite tomorrow, only one file would change.
+- **Streamlit multi-page architecture** with URL-parameter-based navigation between the home view and per-item detail views.
+- **Schema design with explicit versioning** (`schema_version: 1` in `meta.json`) so future schema changes can be migrated rather than break the dashboard.
+- **Honest scoping.** The README documents what works, what doesn't, and what's deliberately deferred. The aggregator refactor is listed as a known limitation - I shipped the read layer first because it's the part I'd use daily.
+
+**Status:** MVP. Single-source (Reddit) today, designed to extend to other specialized forums and YouTube transcripts next. Used personally to track ongoing research across ~9 topic categories.
 
 ## Screenshots
 
@@ -44,7 +57,7 @@ A personal Streamlit dashboard for browsing Reddit research output. Reads markdo
 
 I post research questions across multiple subreddits, scrape the comments, and run them through a local LLM for analysis. Output is a folder of markdown and JSON files. Without a UI, finding past research means digging through folders by date and slug. This dashboard solves that.
 
-The design intent is also to extend beyond Reddit later — same dashboard pattern, additional sources (YouTube transcripts, voice notes, etc.). Hence the generic name `research-dashboard` rather than `reddit-dashboard`.
+The design intent is also to extend beyond Reddit later - same dashboard pattern, additional sources (YouTube transcripts, voice notes, etc.). Hence the generic name `research-dashboard` rather than `reddit-dashboard`.
 
 ## What it does today
 
@@ -175,22 +188,22 @@ Field roles:
 
 ## Categories
 
-Defined in `lib/config.py` as a flat list of strings. The list is application-specific — modify it to fit your own research domains. Adding a new category means adding a string to the list. Categories are enforced at ingestion time (the aggregator validates against the list), so misspellings and typos can't sneak in.
+Defined in `lib/config.py` as a flat list of strings. The list is application-specific - modify it to fit your own research domains. Adding a new category means adding a string to the list. Categories are enforced at ingestion time (the aggregator validates against the list), so misspellings and typos can't sneak in.
 
 Example categories you might use:
 
-- `tech` — programming, infrastructure, tools
-- `home` — appliances, repairs, durable goods to buy
-- `health` — fitness, sleep, nutrition, supplements
-- `finance` — personal finance, investing, taxes
-- `career` — interview prep, salary research, role transitions
-- `travel` — destinations, logistics, gear
-- `learning` — courses, books, skill-building
-- `parenting` — childcare, education choices
-- `vehicles` — car research, maintenance
-- `best_of` — "what's the best X" research that doesn't fit elsewhere
+- `tech` - programming, infrastructure, tools
+- `home` - appliances, repairs, durable goods to buy
+- `health` - fitness, sleep, nutrition, supplements
+- `finance` - personal finance, investing, taxes
+- `career` - interview prep, salary research, role transitions
+- `travel` - destinations, logistics, gear
+- `learning` - courses, books, skill-building
+- `parenting` - childcare, education choices
+- `vehicles` - car research, maintenance
+- `best_of` - "what's the best X" research that doesn't fit elsewhere
 
-Pick categories that match how *you* think about your research, not how someone else organizes theirs. The right number is roughly 6–12 — fewer makes them too coarse to filter usefully, more makes the dropdown unwieldy and creates ambiguity at tagging time.
+Pick categories that match how *you* think about your research, not how someone else organizes theirs. The right number is roughly 6–12 - fewer makes them too coarse to filter usefully, more makes the dropdown unwieldy and creates ambiguity at tagging time.
 
 ## Setup
 
@@ -234,7 +247,7 @@ The dashboard reads what's already in the research folder. To add new research:
 
 1. Run the Reddit aggregator on a new question
 2. Aggregator writes 4 files to a new dated subfolder
-3. Refresh the dashboard — it picks up the new folder automatically
+3. Refresh the dashboard - it picks up the new folder automatically
 
 Currently the aggregator still uses an older flat-file output format. Pending refactor (see future tasks).
 
@@ -261,7 +274,7 @@ See `notes.md` for the working list. High-priority categories:
 
 **Dashboard enhancements:**
 - Clickable project tag → home page filtered by that project
-- Action item capture (write to external notes inbox) — only after enough real use confirms the friction is real
+- Action item capture (write to external notes inbox) - only after enough real use confirms the friction is real
 - Better question rendering (preserve markdown formatting)
 
 **Eventual:**
@@ -272,8 +285,8 @@ See `notes.md` for the working list. High-priority categories:
 ## Tech stack
 
 - Python 3.12+
-- Streamlit — multi-page app framework
-- Pandas — DataFrame as the data boundary
+- Streamlit - multi-page app framework
+- Pandas - DataFrame as the data boundary
 
 ## License
 
