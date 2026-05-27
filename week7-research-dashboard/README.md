@@ -1,19 +1,27 @@
 # Research Dashboard
 
-I post research questions across multiple subreddits *(things like "best UPS for a NAS" or "favorite uses for 5 daily Claude routine runs")*, then scrape the answers and run them through a local LLM to synthesize what people actually agreed on, what got buried but mattered, and what to actually do. Over time this produced a folder of markdown reports and JSON files that became impossible to navigate. I built this dashboard to solve that.
+## Why this exists
 
-It's the **read layer** of a two-part personal data pipeline. A separate aggregator project handles ingestion (scraping, LLM analysis, file output). This project handles surfacing: a multi-page Streamlit app reads the file outputs, joins metadata from a per-research `meta.json`, and exposes everything through filterable lists, sortable columns, and per-item detail views.
+Forums like Reddit are often where the best, most current advice on niche topics actually lives — answers from people who've solved your exact problem last month, not generic synthesis from a model trained two quarters ago. The tradeoff is volume: a single question across 5-10 subreddits can return 100+ comments. Reading them and taking notes used to take me 2-3 hours per question.
 
+This tool collapses that into roughly 15 minutes:
 
-**What this project demonstrates:**
+1. **Aggregator pipeline** (separate project) scrapes comments from all the threads, then runs them through a local LLM (Ollama + Qwen3) with a structured prompt that extracts consensus recommendations, outliers worth considering, and warnings to heed.
+2. **This dashboard** (the read layer) surfaces every research run in a filterable, sortable list, with full LLM analysis and raw comment threads one click away.
 
-- **Multi-stage data pipeline design.** Ingestion and presentation are decoupled - they share a documented JSON schema (`meta.json`) but neither knows about the other's internals. The dashboard could swap to a different aggregator (Other specialized forums, YouTube transcripts) without code changes, only schema mapping.
-- **Pandas as the data boundary.** A single `data.py` module reads files from disk and returns a DataFrame. The Streamlit pages never touch the filesystem. If I switched to SQLite tomorrow, only one file would change.
-- **Streamlit multi-page architecture** with URL-parameter-based navigation between the home view and per-item detail views.
-- **Schema design with explicit versioning** (`schema_version: 1` in `meta.json`) so future schema changes can be migrated rather than break the dashboard.
-- **Honest scoping.** The README documents what works, what doesn't, and what's deliberately deferred. The aggregator refactor is listed as a known limitation - I shipped the read layer first because it's the part I'd use daily.
+The interesting design choice is the LLM prompt: it's instructed to surface *both* consensus and high-quality minority views. Most automated summarization collapses to the majority opinion. In practice, the best answer to "what UPS should I buy" is sometimes the one comment from someone who works at an electronics manufacturer, sitting at +1 vote.
 
-**Status:** MVP. Single-source (Reddit) today, designed to extend to other specialized forums and YouTube transcripts next. Used personally to track ongoing research across ~9 topic categories.
+## What this demonstrates
+
+- **Two-stage data pipeline.** Ingestion and presentation are decoupled — they share a documented JSON schema (`meta.json`) but neither knows about the other's internals. The dashboard could swap to a different source (YouTube transcripts, voice notes) without code changes, only schema mapping.
+- **Pandas as the data boundary.** A single `data.py` module reads files from disk and returns a DataFrame. Streamlit pages never touch the filesystem. Swapping to SQLite would touch one file.
+- **Schema versioning** (`schema_version: 1` in every `meta.json`) so future changes can be migrated rather than break the dashboard.
+- **Local LLM integration** via Ollama for the analysis layer — keeps personal research data off third-party APIs.
+- **Honest scoping.** The README documents what works, what doesn't, and what's deferred. Aggregator refactor is a known limitation — I shipped the read layer first because it's the part I use daily.
+
+## Status
+
+MVP. Single-source (Reddit) today, designed to extend. Used personally for ~9 categories of research (homelab, hardware purchasing decisions, niche technical questions, etc.).
 
 ## Screenshots
 
