@@ -183,3 +183,7 @@ Before you output, mentally re-check:
 - KPI-disappeared flags are real disappearances from prior quarters, not items that were never disclosed
 - Speaker-handoff flags reflect actual ownership changes, not random one-off variance
 If you find a violation, fix it.
+
+[end of prompt]
+
+The transcript to analyze is in the attached file.

@@ -124,3 +124,7 @@ Check each and report Yes / No / Unknown with quote:
 
 ## CONFIDENCE
 0–10. Justify in 2–3 sentences referencing transcript completeness, multi-quarter availability, and unresolved external items.
+
+[end of prompt]
+
+The Stage 1 input to analyze is in the attached file.

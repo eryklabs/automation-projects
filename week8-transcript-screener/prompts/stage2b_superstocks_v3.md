@@ -331,3 +331,7 @@ This is the ENTIRE list of items the user must verify outside the transcript bef
 
 ## CONFIDENCE
 0–10. Justify in 2–3 sentences referencing transcript completeness, multi-quarter availability, the proportion of laws scored Pass-vs-Insufficient, and unresolved external items.
+
+[end of prompt]
+
+The Stage 1 input to analyze is in the attached file.
