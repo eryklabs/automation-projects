@@ -8,19 +8,19 @@ A personal Streamlit dashboard for browsing Reddit research output. Reads markdo
 
 ![Home page showing research items grouped by category, with filters in the sidebar](docs/screenshots/week7-research-dashboard.png)
 
-*Home page: research items grouped by category, with filtering and sorting in the sidebar.*
+*<span style="color: #00ff7f">Home page: research items grouped by category, with filtering and sorting in the sidebar.</span>*
 
 ![Detail page showing one research item with metadata cards, question, and analysis](docs/screenshots/week7-research-dashboard-2.png)
 
-*Detail page: metadata cards, original question, and tabbed view of LLM analysis and full Reddit comment report.*
+*<span style="color: #00ff7f">Detail page: metadata cards, original question, and tabbed view of LLM analysis and full Reddit comment report.</span>*
 
 ![Full Report - Original Question](docs/screenshots/week7-research-dashboard-3.png)
 
-*Detail page: original question.*
+*<span style="color: #00ff7f">Detail page: original question.</span>*
 
 ![Full Report - Responses](docs/screenshots/week7-research-dashboard-4.png)
 
-*Detail page: example of all responses, organized and sorted for readability.*
+*<span style="color: #00ff7f">Detail page: example of all responses, organized and sorted for readability.</span>*
 
 
 
