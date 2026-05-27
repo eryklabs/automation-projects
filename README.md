@@ -1,6 +1,6 @@
 # automation-projects
 
-Personal automation and data engineering portfolio. Eight self-directed projects spanning Python scripting, API integration, ETL pipelines, LLM integration, Linux deployment, and homelab tooling. Built between February and April 2026 as a structured self-taught path toward Data/Automation Engineer/Cybersecurity roles.
+Personal automation and data engineering portfolio. Eight self-directed projects spanning Python scripting, API integration, ETL pipelines, LLM integration, Linux deployment, and homelab tooling. Built between February and April 2026 as a structured self-taught path toward Cybersecurity/Data/Automation Engineer roles.
 
 ---
 
