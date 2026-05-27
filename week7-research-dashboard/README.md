@@ -4,6 +4,26 @@ A personal Streamlit dashboard for browsing Reddit research output. Reads markdo
 
 **Status:** Week 7 project — MVP shipped. Single-source (Reddit) for now, designed to extend.
 
+## Screenshots
+
+![Home page showing research items grouped by category, with filters in the sidebar](docs/screenshots/week7-research-dashboard.png)
+
+*Home page: research items grouped by category, with filtering and sorting in the sidebar.*
+
+![Detail page showing one research item with metadata cards, question, and analysis](docs/screenshots/week7-research-dashboard-2.png)
+
+*Detail page: metadata cards, original question, and tabbed view of LLM analysis and full Reddit comment report.*
+
+![Full Report - Original Question](docs/screenshots/week7-research-dashboard-3.png)
+
+*Detail page: original question.*
+
+![Full Report - Responses](docs/screenshots/week7-research-dashboard-4.png)
+
+*Detail page: example of all responses, organized and sorted for readability.*
+
+
+
 ## Why this exists
 
 I post research questions across multiple subreddits, scrape the comments, and run them through a local LLM for analysis. Output is a folder of markdown and JSON files. Without a UI, finding past research means digging through folders by date and slug. This dashboard solves that.
