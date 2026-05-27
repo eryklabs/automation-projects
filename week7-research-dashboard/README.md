@@ -2,7 +2,7 @@
 
 ## Why this exists
 
-Forums like Reddit are often where the best, most current advice on niche topics actually lives — answers from people who've solved your exact problem last month, not generic synthesis from a model trained two quarters ago. The tradeoff is volume: a single question across 5-10 subreddits can return 100+ comments. Reading them and taking notes used to take me 2-3 hours per question.
+Forums like Reddit are often where the best, most current advice on niche topics actually lives - answers from people who've solved your exact problem last month, not generic synthesis from a model trained two quarters ago. The tradeoff is volume: a single question across 5-10 subreddits can return 100+ comments. Reading them and taking notes used to take me 2-3 hours per question.
 
 This tool collapses that into roughly 15 minutes:
 
@@ -13,11 +13,11 @@ The interesting design choice is the LLM prompt: it's instructed to surface *bot
 
 ## What this demonstrates
 
-- **Two-stage data pipeline.** Ingestion and presentation are decoupled — they share a documented JSON schema (`meta.json`) but neither knows about the other's internals. The dashboard could swap to a different source (YouTube transcripts, voice notes) without code changes, only schema mapping.
+- **Two-stage data pipeline.** Ingestion and presentation are decoupled - they share a documented JSON schema (`meta.json`) but neither knows about the other's internals. The dashboard could swap to a different source (YouTube transcripts, voice notes) without code changes, only schema mapping.
 - **Pandas as the data boundary.** A single `data.py` module reads files from disk and returns a DataFrame. Streamlit pages never touch the filesystem. Swapping to SQLite would touch one file.
 - **Schema versioning** (`schema_version: 1` in every `meta.json`) so future changes can be migrated rather than break the dashboard.
-- **Local LLM integration** via Ollama for the analysis layer — keeps personal research data off third-party APIs.
-- **Honest scoping.** The README documents what works, what doesn't, and what's deferred. Aggregator refactor is a known limitation — I shipped the read layer first because it's the part I use daily.
+- **Local LLM integration** via Ollama for the analysis layer - keeps personal research data off third-party APIs.
+- **Honest scoping.** The README documents what works, what doesn't, and what's deferred. Aggregator refactor is a known limitation - I shipped the read layer first because it's the part I use daily.
 
 ## Status
 
