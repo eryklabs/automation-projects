@@ -1,0 +1,7 @@
+Add-Content -Path "week4-reddit-aggregator\.gitignore" -Value @"
+day1*.py
+analysis.txt
+ocean-shipping/
+claude-routine-runs/
+ups-for-nas/
+"@
