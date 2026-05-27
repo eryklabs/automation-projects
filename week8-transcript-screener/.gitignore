@@ -1,0 +1,8 @@
+
+/transcripts/_raw	# Exclude /transcripts/_raw if you have copyright concerns
+
+# This appends to the gitignore (creates it if missing)
+Add-Content -Path "week8-transcript-screener\.gitignore" -Value @"
+outputs/
+transcripts/
+"@
