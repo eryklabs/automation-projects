@@ -1,6 +1,6 @@
 # Research Dashboard
 
-I post research questions across multiple subreddits - things like "best UPS for a NAS" or "advice for shipping product X internationally" - then scrape the answers and run them through a local LLM to synthesize what people actually agreed on, what got buried but mattered, and what to actually do. Over time this produced a folder of markdown reports and JSON files that became impossible to navigate. I built this dashboard to solve that.
+I post research questions across multiple subreddits *(things like "best UPS for a NAS" or "favorite uses for 5 daily routine runs (Claude)")*, then scrape the answers and run them through a local LLM to synthesize what people actually agreed on, what got buried but mattered, and what to actually do. Over time this produced a folder of markdown reports and JSON files that became impossible to navigate. I built this dashboard to solve that.
 
 It's the **read layer** of a two-part personal data pipeline. A separate aggregator project handles ingestion (scraping, LLM analysis, file output). This project handles surfacing: a multi-page Streamlit app reads the file outputs, joins metadata from a per-research `meta.json`, and exposes everything through filterable lists, sortable columns, and per-item detail views.
 
